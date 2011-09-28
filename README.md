@@ -24,4 +24,7 @@ You like more more than less?  (I cannot understand, but it is your choice)
 	$PAGER = 'more' # forces pager to use more
 	pager { puts "Hello World!" }
 
-If you have set PAGER in your Processenvironment (`/etc/profile` or ~/.profile ...) this PAGER will be used.
+If you have set `PAGER` in your Processenvironment (`/etc/profile` or `~/.profile` ...) this `PAGER` will be used.
+
+	PAGER=more
+	export PAGER
