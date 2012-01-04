@@ -1,10 +1,24 @@
+`IRB::Pager` vs. `Pager`
+====================
+
+Because naming conflicts,  i renamed Pager to `IRB::Pager`.
+There is no need for `IRB`;  of course you can use `IRB::Pager` without `irb`.
+
+I renamed these things:
+
+* gem: `gem install pager` #=> `gem install irb-pager`
+* lib: `require 'pager'` #=> `require 'irb-pager'`
+* module: `Pager` #=> `IRB::Pager`
+
+`Pager.pager` will be `IRB::Pager.pager` now.
+
 Usage
 =====
 
 Very simple:
 
-	require 'pager'
-	include Pager
+	require 'irb-pager'
+	include IRB::Pager
 	pager { puts "Hello World!" }
 	pager { 1.upto(200) {|i|sleep 0.2; puts i} }
 

@@ -4,9 +4,9 @@ require 'rake'
 begin
   require 'jeweler'
   Jeweler::Tasks.new do |gem|
-    gem.name = "pager"
+    gem.name = "irb-pager"
     gem.summary = %Q{Redirect output (and errors) to less}
-    gem.description = %Q{You love something like "domany | less"? In irb you miss it? pager helps to redirect anything to less.}
+    gem.description = %Q{You love something like "domany | less"? In irb you miss it? irb-pager helps to redirect anything to less.}
     gem.email = %w[Denis.Knauf@gmail.com]
     gem.homepage = "http://github.com/DenisKnauf/irb-pager"
     gem.authors = ["Denis Knauf"]
@@ -51,7 +51,7 @@ Rake::RDocTask.new do |rdoc|
   end
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "pager #{version}"
+  rdoc.title = "irb-pager #{version}"
   rdoc.rdoc_files.include 'README.md'
   rdoc.rdoc_files.include 'AUTHORS'
   rdoc.rdoc_files.include 'LICENSE'
