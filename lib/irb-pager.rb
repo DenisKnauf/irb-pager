@@ -1,6 +1,7 @@
 module IRB
 	module Pager
 		module PagerHelper
+			# Parses options for `IRB::Pager::pager`
 			def self.options opts = nil
 				opts = opts.kind_of?( Hash) ? opts.dup : {}
 				stdout = opts[:stdout] || opts[:out]  || $stdout
@@ -11,11 +12,24 @@ module IRB
 				[stdout, stderr, stdin, pager, rescuing]
 			end
 
+			# Exception formatter for `IRB::Pager::pager`.
 			def self.exception_formatter exception
 				["#{exception.class}: #{exception.message}", exception.backtrace.collect {|c| "\tfrom #{c}" }].join "\n"
 			end
 		end
 
+		# Starts pager (for example `less`).
+		# $stdin, $stderr and $stdout will be redirected to pager and your block will be called.
+		# On return or a raised exception, $stdin, $stderr and $stdout will be redirected to the original IOs.
+		# Instead of redirecting output for your block, you can inspect an object in pager.
+		# If pager will be exit, your program will be run like before.
+		#
+		# Possible Options:
+		# `opts[:stdout]`, `opts[:out]`: redirect this instead `$stdout`
+		# `opts[:stderr]`, `opts[:err]`: redirect this instead `$stderr`
+		# `opts[:stdin]`, `opts[:in]`:   redirect this instead `$stdin`
+		# `opts[:pager]`, `opts[:less]`, `$PAGER`, `ENV['PAGER']`: use this pager instead less
+		# `opts[:rescuing]`, `opts[:exceptions]`, `$PAGER_RESCUE`: unless `false` or `nil` rescue exception and print it via pager, too
 		def self.pager obj = nil, opts = nil, &exe
 			if block_given?
 				stdout, stderr, stdin, pager, rescuing = PagerHelper.options( opts || obj)
