@@ -1,5 +1,6 @@
 module IRB
 	module Pager
+		extend IRB::Pager
 		module PagerHelper
 			# Parses options for `IRB::Pager::pager`
 			def self.options opts = nil
@@ -30,7 +31,7 @@ module IRB
 		# `opts[:stdin]`, `opts[:in]`:   redirect this instead `$stdin`
 		# `opts[:pager]`, `opts[:less]`, `$PAGER`, `ENV['PAGER']`: use this pager instead less
 		# `opts[:rescuing]`, `opts[:exceptions]`, `$PAGER_RESCUE`: unless `false` or `nil` rescue exception and print it via pager, too
-		def self.pager obj = nil, opts = nil, &exe
+		def pager obj = nil, opts = nil, &exe
 			if block_given?
 				stdout, stderr, stdin, pager, rescuing = PagerHelper.options( opts || obj)
 				pid, dupout, duperr, dupin = nil, stdout.dup, stderr.dup, stdin.dup
